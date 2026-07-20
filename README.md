@@ -1,4 +1,3 @@
-# Project-2---Kubernetes-ArgoCD-Implementation
 
 This Project is an entirety of implementation of Kubernetes with ArgoCD along with the updates sent to the email. The tools used will be Jenkins , SonarQue , Docker , Trivvy, Grafana and Prometheus
 
@@ -66,6 +65,23 @@ Install recommendeed Plugins
 
 <img width="1014" height="731" alt="image" src="https://github.com/user-attachments/assets/f3553ad0-f757-4cda-a3f5-db173e0d3a1e" />
 
+Login and Install Custom Plugins as given below
+
+<img width="723" height="535" alt="image" src="https://github.com/user-attachments/assets/0cf61452-c1af-4651-a5e2-4e0eb6578c8a" />
+
+```
+Pipeline: Stage View
+```
+```
+Blue Ocean
+```
+```
+SonarQube Scanner
+```
+```
+OWASP Dependency Check
+```
+
 
  ## $${\color{Red} \textbf{Docker Installation} \ \}$$
 ```
@@ -83,6 +99,23 @@ aws configure
 ```
  ## $${\color{Red} \textbf{IAM user} \ \}$$
  <img width="2546" height="253" alt="image" src="https://github.com/user-attachments/assets/ae3e7f8f-a125-4451-90ba-6812852f5cbf" />
+
+<img width="983" height="374" alt="image" src="https://github.com/user-attachments/assets/639598a8-74ce-47b4-8cc7-faad2b4f5d0e" />
+```
+Enable admin access
+```
+Create new access Key 
+<img width="1140" height="797" alt="image" src="https://github.com/user-attachments/assets/087e3ea9-48ea-454e-ab84-fb9dbd752ff9" />
+<img width="791" height="601" alt="image" src="https://github.com/user-attachments/assets/e3d14846-945e-4b07-abab-b399cd8f061d" />
+
+In CLI 
+```
+aws configure
+```
+and add the credentials of the new created user 
+
+<img width="618" height="133" alt="image" src="https://github.com/user-attachments/assets/c3b66af8-ba39-4443-ad1e-7158c3e2a950" />
+
 
 
 
