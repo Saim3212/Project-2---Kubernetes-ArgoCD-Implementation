@@ -47,4 +47,42 @@ echo "deb [signed-by=/etc/apt/keyrings/jenkins-keyring.asc]" \
 sudo apt update
 sudo apt install jenkins
 ```
+<img width="1790" height="695" alt="image" src="https://github.com/user-attachments/assets/a1298617-12f8-4fd7-930f-0227a6cbc6e9" />
+
+```
+sudo systemctl enable jenkins
+```
+```
+sudo systemctl start jenkins
+```
+```
+sudo systemctl status jenkins
+```
+Use {Instance Ip} :8080
+
+<img width="1013" height="476" alt="image" src="https://github.com/user-attachments/assets/70d631a6-862b-4447-aa1f-6e5c68f29e8a" />
+
+Install recommendeed Plugins
+
+<img width="1014" height="731" alt="image" src="https://github.com/user-attachments/assets/f3553ad0-f757-4cda-a3f5-db173e0d3a1e" />
+
+
+ ## $${\color{Red} \textbf{Docker Installation} \ \}$$
+```
+ sudo apt-get install docker.io -y
+sudo usermod -aG docker ubuntu && newgrp docker
+```
+ ## $${\color{Red} \textbf{Cluster Creation} \ \}$$
+
+```
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+sudo apt install unzip
+unzip awscliv2.zip
+sudo ./aws/install
+aws configure
+```
+ ## $${\color{Red} \textbf{IAM user} \ \}$$
+ <img width="2546" height="253" alt="image" src="https://github.com/user-attachments/assets/ae3e7f8f-a125-4451-90ba-6812852f5cbf" />
+
+
 
