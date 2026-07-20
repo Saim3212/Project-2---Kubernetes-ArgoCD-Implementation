@@ -95,8 +95,22 @@ curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip
 sudo apt install unzip
 unzip awscliv2.zip
 sudo ./aws/install
+```
+In CLI 
+```
 aws configure
 ```
+and add the credentials of the new created user 
+
+<img width="618" height="133" alt="image" src="https://github.com/user-attachments/assets/c3b66af8-ba39-4443-ad1e-7158c3e2a950" />
+```
+eksctl create cluster --name=wanderlust \
+                    --region=ap-south-1 \
+                    --version=1.30 \
+                    --without-nodegroup
+```
+
+
  ## $${\color{Red} \textbf{IAM user} \ \}$$
  <img width="2546" height="253" alt="image" src="https://github.com/user-attachments/assets/ae3e7f8f-a125-4451-90ba-6812852f5cbf" />
 
@@ -108,14 +122,54 @@ Create new access Key
 <img width="1140" height="797" alt="image" src="https://github.com/user-attachments/assets/087e3ea9-48ea-454e-ab84-fb9dbd752ff9" />
 <img width="791" height="601" alt="image" src="https://github.com/user-attachments/assets/e3d14846-945e-4b07-abab-b399cd8f061d" />
 
-In CLI 
+
+
+## $${\color{Red} \textbf{Install Kubectl} \ \}$$
+
 ```
-aws configure
+curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.19.6/2021-01-05/bin/linux/amd64/kubectl
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin
+kubectl version --short --client
 ```
-and add the credentials of the new created user 
+## $${\color{Red} \textbf{Install Ekctl} \ \}$$
 
-<img width="618" height="133" alt="image" src="https://github.com/user-attachments/assets/c3b66af8-ba39-4443-ad1e-7158c3e2a950" />
+```
+curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+sudo mv /tmp/eksctl /usr/local/bin
+eksctl version
+```
+## $${\color{Red} \textbf{Install Trivvy} \ \}$$
 
+```
+sudo apt-get install wget apt-transport-https gnupg lsb-release -y
+wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
+echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main | sudo tee -a /etc/apt/sources.list.d/trivy.list
+sudo apt-get update -y
+sudo apt-get install trivy -y
+```
+## $${\color{Red} \textbf{Install SonarQube} \ \}$$
 
+```
+docker run -itd --name SonarQube-Server -p 9000:9000 sonarqube:lts-community
+```
+{  Instance ID }:9000
 
+<img width="534" height="236" alt="image" src="https://github.com/user-attachments/assets/3abb6928-c6b9-40c5-8747-147058e99ab7" />
 
+## $${\color{Red} \textbf{NodeGroup Creation} \ \}$$
+
+Edit the commands according to the instance 
+
+```
+eksctl create nodegroup --cluster=wanderlust \
+                     --region=ap-south-1 \
+                     --name=wanderlust \
+                     --node-type=m7i-flex.large \
+                     --nodes=2 \
+                     --nodes-min=2 \
+                     --nodes-max=2 \
+                     --node-volume-size=29 \
+                     --ssh-access \
+                     --ssh-public-key=wanderkey
+```
