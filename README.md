@@ -1,4 +1,3 @@
-<img width="500" height="455" alt="image" src="https://github.com/user-attachments/assets/34a7a574-fe95-4a87-b028-c2c51a1789cd" />
 This Project is an entirety of implementation of Kubernetes with ArgoCD along with the updates sent to the email. The tools used will be Jenkins , SonarQue , Docker , Trivvy, Grafana and Prometheus
 
 <img width="1948" height="1149" alt="image" src="https://github.com/user-attachments/assets/8088884f-07fb-46ed-920e-c9d1137ef59f" />
