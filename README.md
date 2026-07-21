@@ -173,3 +173,23 @@ eksctl create nodegroup --cluster=wanderlust \
                      --ssh-access \
                      --ssh-public-key=wanderkey
 ```
+## $${\color{Red} \textbf{Generate Fine Grain Token} \ \}$$
+
+Go into settings of github and Developer Settings
+Create new token with everything enabled
+<img width="813" height="1197" alt="image" src="https://github.com/user-attachments/assets/75a32fc7-f37e-4ddc-b8b8-fb67aa4f6416" />
+
+## $${\color{Red} \textbf{Jenkins Credentials} \ \}$$
+Select Credentials from Settings of Jenkins
+<img width="1275" height="690" alt="image" src="https://github.com/user-attachments/assets/e50df3fa-e13b-4730-b338-74ff188ebf01" />
+Click Global under System
+<img width="1304" height="544" alt="image" src="https://github.com/user-attachments/assets/dd74fbee-23d0-41da-bd65-8d5506ee125d" />
+Select username and password and add in the fine grained token as password
+<img width="1717" height="975" alt="image" src="https://github.com/user-attachments/assets/751f3d34-237b-40b6-9c8d-4f07be0484b2" />
+<img width="810" height="399" alt="image" src="https://github.com/user-attachments/assets/6db8f3a3-0afd-41fc-b910-f85748c436cb" />
+
+
+
+
+
+
