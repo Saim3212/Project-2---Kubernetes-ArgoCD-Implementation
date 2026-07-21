@@ -263,7 +263,62 @@ Once commands passed , the automations should now show the instance IPs match th
 <img width="1174" height="389" alt="image" src="https://github.com/user-attachments/assets/016f556a-9f00-486c-8947-cc6b010496bb" />
 <img width="1329" height="277" alt="image" src="https://github.com/user-attachments/assets/84c44122-78e1-4a13-9f86-0af140cf40ca" />
 
+## $${\color{Red} \textbf{ArgoCd Configure} \ \}$$
 
+Installation Commands
+```
+kubectl create namespace argocd
+```
+```
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+```
+```
+watch kubectl get pods -n argocd
+```
+```
+sudo curl --silent --location -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/download/v2.4.7/argocd-linux-amd64
+```
+```
+sudo chmod +x /usr/local/bin/argocd
+```
+```
+kubectl get svc -n argocd
+```
+```
+kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "NodePort"}}'
+```
+```
+kubectl get svc -n argocd
+```
+Change the Inbound Rules in security for the 2 Wanderlust instances as well
+
+<img width="657" height="453" alt="image" src="https://github.com/user-attachments/assets/f075382a-075a-403a-b4f7-2876d79ccf15" />
+<img width="1613" height="484" alt="image" src="https://github.com/user-attachments/assets/5ac68283-8113-421b-b9b8-d2aa1b7462b1" />
+
+To get password paste in 
+
+```
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
+```
+
+for adding Repo 
+<img width="2032" height="370" alt="image" src="https://github.com/user-attachments/assets/d041fa89-a66c-422f-bddf-b3627179a192" />
+Add in given options
+<img width="908" height="817" alt="image" src="https://github.com/user-attachments/assets/0fc7da7e-fbdc-43b1-9ba6-fff90865e228" />
+
+Add in SonarQube in Jenkins
+
+Link in the URL from SonarQube
+<img width="773" height="886" alt="image" src="https://github.com/user-attachments/assets/836473b3-683b-492d-8f41-f43fea832a57" />
+
+
+```
+```
+
+```
+```
+
+```
 
 
 
