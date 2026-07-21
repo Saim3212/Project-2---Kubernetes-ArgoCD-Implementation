@@ -559,6 +559,17 @@ Allow Inbound Rules
 31695
 31553
 
+## $${\color{Red} \textbf{Grafana} \ \}$$
+
+<img width="827" height="654" alt="image" src="https://github.com/user-attachments/assets/68a0068f-fc1a-4500-ba7b-d219e6ef8204" />
+
+Command to get the password 
+```
+kubectl get secret --namespace prometheus stable-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+```
+
+
+
 
 
 
