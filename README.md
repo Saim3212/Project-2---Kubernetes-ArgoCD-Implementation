@@ -1,4 +1,4 @@
-
+<img width="500" height="455" alt="image" src="https://github.com/user-attachments/assets/34a7a574-fe95-4a87-b028-c2c51a1789cd" />
 This Project is an entirety of implementation of Kubernetes with ArgoCD along with the updates sent to the email. The tools used will be Jenkins , SonarQue , Docker , Trivvy, Grafana and Prometheus
 
 <img width="1948" height="1149" alt="image" src="https://github.com/user-attachments/assets/8088884f-07fb-46ed-920e-c9d1137ef59f" />
@@ -187,6 +187,88 @@ Click Global under System
 Select username and password and add in the fine grained token as password
 <img width="1717" height="975" alt="image" src="https://github.com/user-attachments/assets/751f3d34-237b-40b6-9c8d-4f07be0484b2" />
 <img width="810" height="399" alt="image" src="https://github.com/user-attachments/assets/6db8f3a3-0afd-41fc-b910-f85748c436cb" />
+
+
+## $${\color{Red} \textbf{SonarQube} \ \}$$
+<img width="1544" height="887" alt="image" src="https://github.com/user-attachments/assets/040efa89-2a1b-416d-9dee-76896d8b95ad" />
+Generate and Copy the Token
+<img width="1208" height="595" alt="image" src="https://github.com/user-attachments/assets/124412c5-4d3e-4334-89d5-817a87c2bb7c" />
+Add Sonar as the ID to match the Jenkinsfile
+<img width="546" height="465" alt="image" src="https://github.com/user-attachments/assets/d8954297-f285-4a98-bb2f-31bf265a7df4" />
+
+Click on Administration>Configuration>Webhooks
+<img width="1488" height="415" alt="image" src="https://github.com/user-attachments/assets/108afd4c-c8bc-4ebd-b557-be80389d2731" />
+Add in Jenkins-Webhook, With Jenkins URL as the url 
+
+<img width="456" height="542" alt="image" src="https://github.com/user-attachments/assets/40136d97-ac0d-4288-bad9-05698ed02fff" />
+
+
+## $${\color{Red} \textbf{OWASP Setup} \ \}$$
+manage Jenkins>Tools>Dependency Check
+<img width="882" height="1262" alt="image" src="https://github.com/user-attachments/assets/a8e6be68-c714-4dbb-8de8-8d8728e53c85" />
+```
+OWASP
+Make it install automatically
+Github
+```
+Click Save
+Request an NVD API Key from link
+[NVD API KEY](https://nvd.nist.gov/developers/request-an-api-key)
+
+Visit the Link provided after submiiting a key reqeust
+
+<img width="1025" height="429" alt="image" src="https://github.com/user-attachments/assets/d4115c06-4569-49da-9f90-f62915064f2d" />
+
+Copy paste the Key in Secret
+<img width="1575" height="572" alt="image" src="https://github.com/user-attachments/assets/1580a729-c979-4a5a-a545-ca5589e5d4cd" />
+
+<img width="500" height="455" alt="image" src="https://github.com/user-attachments/assets/5c04e350-9d6d-4ecb-9a37-d10a2e11d099" />
+
+
+
+
+
+## $${\color{Red} \textbf{Generate DockerHub Token} \ \}$$
+Go Settings in Dockerhub and geenrate new access token
+<img width="2148" height="746" alt="image" src="https://github.com/user-attachments/assets/5a4be078-6956-4b4c-aa17-cc84ba23eedf" />
+follow the specifics
+<img width="712" height="523" alt="image" src="https://github.com/user-attachments/assets/f08c36f2-cc23-48e6-891b-3c6c635033f2" />
+Copy the access Token that is given and paste it in the credentails Tab in Jenkins as Password
+<img width="494" height="550" alt="image" src="https://github.com/user-attachments/assets/bc74c189-4555-4434-b544-ad34586a0c5b" />
+make sure the username is the username in docker
+
+## $${\color{Red} \textbf{VSCode} \ \}$$
+Edit the file Provided within the Repo to match the instance ID of the wanderlust
+<img width="1370" height="171" alt="image" src="https://github.com/user-attachments/assets/197a7773-af42-4801-88e5-57ad28e5e323" />
+
+<img width="1122" height="524" alt="image" src="https://github.com/user-attachments/assets/24f299e6-fef6-4978-b726-e15d3e1034e0" />
+
+Open Gitbash and login through command
+
+```
+aws configure
+```
+<img width="689" height="272" alt="image" src="https://github.com/user-attachments/assets/26c9030c-d19a-4dc7-9f71-efb13d8fbbbe" />
+
+Once done , pass the command
+
+```
+bash updatefrontendnew.sh
+```
+and 
+```
+bash updatebackendnew.sh
+```
+Once commands passed , the automations should now show the instance IPs match the one in the dockerfile
+
+<img width="1174" height="389" alt="image" src="https://github.com/user-attachments/assets/016f556a-9f00-486c-8947-cc6b010496bb" />
+<img width="1329" height="277" alt="image" src="https://github.com/user-attachments/assets/84c44122-78e1-4a13-9f86-0af140cf40ca" />
+
+
+
+
+
+
 
 
 
