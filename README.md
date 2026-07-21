@@ -362,14 +362,37 @@ On adding the URL with the for backend and frontend
 
 <img width="652" height="170" alt="image" src="https://github.com/user-attachments/assets/cbd6da5d-a613-48ea-ab36-4470e39b0dd0" />
 
+## $${\color{Red} \textbf{Adding Helm} \ \}$$
 
+```
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+```
+```
+chmod 700 get_helm.sh
+```
+```
+./get_helm.sh
+```
+```
+helm repo add stable https://charts.helm.sh/stable
+```
+```
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+```
+```
+kubectl create namespace prometheus
+```
+```
+helm install stable prometheus-community/kube-prometheus-stack -n prometheus
+```
+```
+kubectl get pods -n prometheus
+```
 
-
-
-
-
-
-
+## $${\color{Red} \textbf{Jenkins Libraries} \ \}$$
+<img width="2155" height="1287" alt="image" src="https://github.com/user-attachments/assets/a2cd68d5-b7e9-46ae-a612-0d2bf8ffc452" />
+## $${\color{Red} \textbf{Jenkins Pipeline} \ \}$$
+<img width="815" height="849" alt="image" src="https://github.com/user-attachments/assets/7e1a358c-89e5-46b2-a505-0178776e95a0" />
 
 
 
