@@ -391,8 +391,173 @@ kubectl get pods -n prometheus
 
 ## $${\color{Red} \textbf{Jenkins Libraries} \ \}$$
 <img width="2155" height="1287" alt="image" src="https://github.com/user-attachments/assets/a2cd68d5-b7e9-46ae-a612-0d2bf8ffc452" />
+
 ## $${\color{Red} \textbf{Jenkins Pipeline} \ \}$$
+
 <img width="815" height="849" alt="image" src="https://github.com/user-attachments/assets/7e1a358c-89e5-46b2-a505-0178776e95a0" />
+
+Paste the Pipeline under script
+
+```
+@Library('Shared') _
+pipeline {
+    agent any
+    
+    environment{
+        SONAR_HOME = tool "Sonar"
+    }
+    
+    parameters {
+        string(name: 'FRONTEND_DOCKER_TAG', defaultValue: '', description: 'Setting docker image for latest push')
+        string(name: 'BACKEND_DOCKER_TAG', defaultValue: '', description: 'Setting docker image for latest push')
+    }
+    
+    stages {
+        stage("Validate Parameters") {
+            steps {
+                script {
+                    if (params.FRONTEND_DOCKER_TAG == '' || params.BACKEND_DOCKER_TAG == '') {
+                        error("FRONTEND_DOCKER_TAG and BACKEND_DOCKER_TAG must be provided.")
+                    }
+                }
+            }
+        }
+        stage("Workspace cleanup"){
+            steps{
+                script{
+                    cleanWs()
+                }
+            }
+        }
+        
+        stage('Git: Code Checkout') {
+            steps {
+                script{
+                    clone("https://github.com/sayantann7/DevOps-Mega-Project.git","main")
+                }
+            }
+        }
+        
+        stage("Trivy: Filesystem scan"){
+            steps{
+                script{
+                    trivy_scan()
+                }
+            }
+        }
+
+        stage("OWASP: Dependency check"){
+            steps{
+                script{
+                    owasp_dependency()
+                }
+            }
+        }
+        
+        stage("SonarQube: Code Analysis"){
+            steps{
+                script{
+                    sonarqube_analysis("Sonar","wanderlust","wanderlust")
+                }
+            }
+        }
+        
+        stage("SonarQube: Code Quality Gates"){
+            steps{
+                script{
+                    sonarqube_code_quality()
+                }
+            }
+        }
+        
+        stage('Exporting environment variables') {
+            parallel{
+                stage("Backend env setup"){
+                    steps {
+                        script{
+                            dir("Automations"){
+                                sh "bash updatebackendnew.sh"
+                            }
+                        }
+                    }
+                }
+                
+                stage("Frontend env setup"){
+                    steps {
+                        script{
+                            dir("Automations"){
+                                sh "bash updatefrontendnew.sh"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        stage("Docker: Build Images"){
+            steps{
+                script{
+                        dir('backend'){
+                            docker_build("wanderlust-backend-beta","${params.BACKEND_DOCKER_TAG}","sayantannandi")
+                        }
+                    
+                        dir('frontend'){
+                            docker_build("wanderlust-frontend-beta","${params.FRONTEND_DOCKER_TAG}","sayantannandi")
+                        }
+                }
+            }
+        }
+        
+        stage("Docker: Push to DockerHub"){
+            steps{
+                script{
+                    docker_push("wanderlust-backend-beta","${params.BACKEND_DOCKER_TAG}","sayantannandi") 
+                    docker_push("wanderlust-frontend-beta","${params.FRONTEND_DOCKER_TAG}","sayantannandi")
+                }
+            }
+        }
+    }
+    post{
+        success{
+            archiveArtifacts artifacts: '*.xml', followSymlinks: false
+            build job: "Wanderlust-CD", parameters: [
+                string(name: 'FRONTEND_DOCKER_TAG', value: "${params.FRONTEND_DOCKER_TAG}"),
+                string(name: 'BACKEND_DOCKER_TAG', value: "${params.BACKEND_DOCKER_TAG}")
+            ]
+        }
+    }
+}
+```
+Change Source codes settings from Manage Jenkins>System
+<img width="2243" height="1003" alt="image" src="https://github.com/user-attachments/assets/931f6e8e-0aa1-4536-a264-d81751566ec2" />
+```
+https://github.com/sayantann7/jenkins-shared-libraries.git
+```
+Tools 
+SonarQube
+<img width="2270" height="596" alt="image" src="https://github.com/user-attachments/assets/345968d7-170a-438d-96be-a819b428d56e" />
+Dependency Check Maven
+<img width="570" height="767" alt="image" src="https://github.com/user-attachments/assets/9f7fbe89-ad4c-4948-bf55-52d824d232f2" />
+
+
+## $${\color{Red} \textbf{Prometheus and Grafana Installation} \ \}$$
+Edit Docker file 
+```
+kubectl edit svc stable-grafana -n prometheus
+```
+```
+kubectl edit svc stable-kube-prometheus-sta-prometheus -n prometheus
+```
+<img width="947" height="939" alt="image" src="https://github.com/user-attachments/assets/fe3f5184-1b89-4e4d-8c5c-4c334d2441aa" />
+
+<img width="755" height="743" alt="image" src="https://github.com/user-attachments/assets/5ab4d503-63f9-41c6-ba2a-fe0ca2fb8a01" />
+
+<img width="1109" height="387" alt="image" src="https://github.com/user-attachments/assets/514228a7-f55d-42a2-801e-e24bf5dec3f3" />
+
+
+Allow Inbound Rules
+31695
+31553
 
 
 
