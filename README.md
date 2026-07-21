@@ -311,14 +311,65 @@ Add in SonarQube in Jenkins
 Link in the URL from SonarQube
 <img width="773" height="886" alt="image" src="https://github.com/user-attachments/assets/836473b3-683b-492d-8f41-f43fea832a57" />
 
+Add in commands to push the git repo
 
 ```
+git add .
 ```
+```
+git commit -m "update instance id" 
+```
+Login Argo inside Instance Change the IP according to the Argo IP 
+```
+ argocd login 52.53.156.187:32738 --username admin
+```
+<img width="1353" height="127" alt="image" src="https://github.com/user-attachments/assets/1d965e0d-2950-47b9-9f06-99e9c50935ac" />
+<img width="528" height="125" alt="image" src="https://github.com/user-attachments/assets/d4667e5e-ece1-4d2d-9159-05eaf9e7a47a" />
 
+get Argo Cluster List with Command
 ```
+kubectl config get-contexts
 ```
+edit the Cluster Command according to the name of the cluster and the Cluster name 
+```
+argocd cluster add Wanderlust@wanderlust.us-west-1.eksctl.io --name wanderlust-eks-cluster
+```
+<img width="1883" height="170" alt="image" src="https://github.com/user-attachments/assets/d58754bc-a100-4f0b-b790-477b98d31409" />
+Once made , it should reflect within ArgoCD
+<img width="2005" height="516" alt="image" src="https://github.com/user-attachments/assets/bd349ca0-64a7-407a-9abc-ecbf31161987" />
 
+Create new application within Argo CD
+<img width="2538" height="1221" alt="image" src="https://github.com/user-attachments/assets/3facbd0f-0356-4d86-984a-c8e9befd9ab0" />
+
+And the application should now be active and healthy 
+<img width="676" height="560" alt="image" src="https://github.com/user-attachments/assets/289b9c5e-1d29-48c1-951a-8b6e2dc47d94" />
+make path as
 ```
+ kubernetes
+```
+<img width="1997" height="1195" alt="image" src="https://github.com/user-attachments/assets/fc6eb94b-532a-453a-91fe-2353bd4e0708" />
+
+Add in Inbound Rules for the wonderlust instances 
+with ports
+```
+31000
+```
+```
+31100
+```
+On adding the URL with the for backend and frontend
+<img width="2549" height="979" alt="image" src="https://github.com/user-attachments/assets/93b4b3ed-7fcc-4e56-b162-cd0abf820896" />
+
+<img width="652" height="170" alt="image" src="https://github.com/user-attachments/assets/cbd6da5d-a613-48ea-ab36-4470e39b0dd0" />
+
+
+
+
+
+
+
+
+
 
 
 
